@@ -4,6 +4,23 @@ import numpy as np
 import matplotlib.pyplot as plt
 import time
 
+def createExamples():
+	numberArrayExamples = open('numArEx.txt', 'a')
+	numbersWeHave = range(0, 10)
+	versionsWeHave = range(1, 10)
+
+	for eachNum in numbersWeHave:
+		for eachVersion in versionsWeHave:
+			#print (str(eachNum)+ '.' + str(eachVersion))
+			imgFilePath = 'images/numbers/' + str(eachNum) + '.' + str(eachVersion) + '.png'
+			ei = Image.open(imgFilePath)
+			eiar = np.array(ei)
+			#convert to a list so we can save to text file
+			eiar1 = str(eiar.tolist())
+
+			lineToWrite = str(eachNum)+'::'+eiar1+'\n'
+			numberArrayExamples.write(lineToWrite)
+
 def threshold(imageArray):
 	balanceArr = []
 	newArr = imageArray
@@ -42,7 +59,7 @@ iar3 = np.array(i3)
 i4 = Image.open('images/sentdex.png')
 iar4 = np.array(i4)
 
-threshold(iar3)
+'''threshold(iar3)
 threshold(iar2)
 threshold(iar4)
 
@@ -57,4 +74,4 @@ ax2.imshow(iar2)
 ax3.imshow(iar3)
 ax4.imshow(iar4)
 
-plt.show()
+plt.show()'''
